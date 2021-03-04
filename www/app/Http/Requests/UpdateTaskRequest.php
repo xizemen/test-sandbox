@@ -25,8 +25,17 @@ class UpdateTaskRequest extends FormRequest
     {
         return [
             'id' => 'required|integer|min:1',
-            'title' => 'required|filled|max:255',
-            'is_done' => 'required|filled|boolean'
+            'title' => 'required|capitalize|max:255',
+            'is_done' => 'required|boolean'
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'id.required' => 'Invalid task ID provided.',
+            'task.required' => 'A task must have a title!',
+            'is_done.required' => 'A task can be done or undone!',
         ];
     }
 }

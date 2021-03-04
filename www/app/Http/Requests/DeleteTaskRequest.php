@@ -24,8 +24,14 @@ class DeleteTaskRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => 'required|unique:posts|max:255',
-            'body' => 'required',
+            'id' => 'required|integer|min:1',
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'id.required' => 'Invalid task ID provided.',
         ];
     }
 }

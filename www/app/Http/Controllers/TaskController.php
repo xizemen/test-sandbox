@@ -11,6 +11,8 @@ class TaskController extends Controller
 {
     public function index(GetTaskRequest $request)
     {
+        $validated = $request->validated();
+
         return view('task-list', [
             'tasks' => []
         ]);
@@ -18,16 +20,16 @@ class TaskController extends Controller
 
     public function create(CreateTaskRequest $request)
     {
-
+        $validated = $request->validated();
     }
 
     public function update(UpdateTaskRequest $request)
     {
-
+        $validated = $request->validated();
     }
 
     public function delete(DeleteTaskRequest $request)
     {
-
+        $validated = $request->validated();
     }
 }

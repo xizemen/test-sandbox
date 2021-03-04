@@ -13,10 +13,10 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/task/{id?}', 'TaskController@index')->name('tasks');
+Route::get('/task/{id?}', 'TaskController@index')->name('task');
 
-Route::post('/task', 'TaskController@create');
+Route::post('/task', 'TaskController@create')->name('task.create');
 
-Route::put('/task/{id}', 'TaskController@update');
+Route::put('/task/{id}', 'TaskController@update')->name('task.update');
 
-Route::delete('/task/{id}', 'TaskController@delete');
+Route::delete('/task/{id}', 'TaskController@delete')->name('task.delete');
