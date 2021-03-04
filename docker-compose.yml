@@ -6,9 +6,9 @@ services:
       context: ./bin/webserver
     container_name: 'mend-webserver'
     restart: 'always'
+    command: 'php artisan serve --host=0.0.0.0 --port=80'
     ports:
       - "80:80"
-      - "443:443"
     links:
       - mysql
     volumes:
