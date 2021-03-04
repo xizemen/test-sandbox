@@ -2,28 +2,31 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\CreateTaskRequest;
+use App\Http\Requests\DeleteTaskRequest;
+use App\Http\Requests\GetTaskRequest;
+use App\Http\Requests\UpdateTaskRequest;
 
 class TaskController extends Controller
 {
-    public function index()
+    public function index(GetTaskRequest $request)
     {
         return view('task-list', [
             'tasks' => []
         ]);
     }
 
-    public function create()
+    public function create(CreateTaskRequest $request)
     {
 
     }
 
-    public function update()
+    public function update(UpdateTaskRequest $request)
     {
 
     }
 
-    public function delete()
+    public function delete(DeleteTaskRequest $request)
     {
 
     }
