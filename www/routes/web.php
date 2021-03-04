@@ -11,6 +11,12 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+use Illuminate\Support\Facades\Route;
+
+Route::get('/task/{id?}', 'TaskController@index')->name('tasks');
+
+Route::post('/task', 'TaskController@create');
+
+Route::put('/task/{id}', 'TaskController@update');
+
+Route::delete('/task/{id}', 'TaskController@delete');
