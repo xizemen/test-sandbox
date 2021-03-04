@@ -22,7 +22,7 @@ services:
     container_name: 'mend-mysql'
     restart: 'always'
     ports:
-      - "3306:3306"
+      - "3309:3309"
     volumes:
       - ${MYSQL_LOG_DIR-./logs/mysql}:/var/log/mysql
     environment:

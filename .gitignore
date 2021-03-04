@@ -1,2 +1,6 @@
 .idea
-.idea
+logs/apache2/*
+!logs/apache2/.gitkeep
+logs/mysql/*
+!logs/mysql/.gitkeep
+.env
