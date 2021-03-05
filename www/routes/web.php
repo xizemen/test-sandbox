@@ -13,6 +13,14 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', 'TaskController@index')->name('tasks.index');
+Route::get('/', 'TaskController@index');
 
-Route::resource('task', 'TaskController');
+Route::get('/task', 'TaskController@index');
+
+Route::get('/task/{id}', 'TaskController@get');
+
+Route::post('/task', 'TaskController@create');
+
+Route::put('/task/{id}', 'TaskController@update');
+
+Route::delete('/task/{id}', 'TaskController@destroy');

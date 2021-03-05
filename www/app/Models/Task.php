@@ -21,6 +21,6 @@ class Task extends Model
      * @var string[]
      */
     protected $hidden = [
-        'deleted_at'
+        'is_deleted'
     ];
 }

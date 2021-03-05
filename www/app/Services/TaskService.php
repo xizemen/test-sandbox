@@ -3,6 +3,9 @@
 namespace App\Services;
 
 use App\Repositories\TaskRepository;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Collection;
 
 /**
  * Class TaskService
@@ -25,27 +28,27 @@ class TaskService
     }
 
     /**
-     * @return array
+     * @return Collection
      */
-    public function getAll(): array
+    public function getAll(): Collection
     {
-        $this->taskRepository->getAll();
+        return $this->taskRepository->getAll();
     }
 
     /**
      * @param int $id
-     * @return array
+     * @return Builder|Model|Collection|object
      */
-    public function get(int $id): array
+    public function get(int $id)
     {
         return $this->taskRepository->get($id);
     }
 
     /**
      * @param array $data
-     * @return bool
+     * @return int
      */
-    public function create(array $data): bool
+    public function create(array $data): int
     {
         return $this->taskRepository->create($data);
     }
@@ -53,11 +56,13 @@ class TaskService
     /**
      * @param int $id
      * @param array $data
-     * @return bool
+     * @return Builder|Model|Collection|object
      */
-    public function update(int $id, array $data): bool
+    public function update(int $id, array $data)
     {
-        return $this->taskRepository->update($id, $data);
+        $this->taskRepository->update($id, $data);
+
+        return $this->taskRepository->get($id);
     }
 
     /**

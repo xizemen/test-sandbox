@@ -13,7 +13,7 @@ class CreateTaskRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,8 +24,7 @@ class CreateTaskRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'task' => 'required|capitalize|max:255',
-            'is_done' => 'required|boolean'
+            'task' => 'required|max:255',
         ];
     }
 
@@ -33,7 +32,6 @@ class CreateTaskRequest extends FormRequest
     {
         return [
             'task.required' => 'A task must have a title!',
-            'is_done.required' => 'A task can be done or undone!',
         ];
     }
 }

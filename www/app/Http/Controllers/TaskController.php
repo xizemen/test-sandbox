@@ -54,7 +54,9 @@ class TaskController extends Controller
     public function create(CreateTaskRequest $request): JsonResponse
     {
         $validated = $request->validated();
-        $task = $this->taskService->create($validated);
+
+        $id = $this->taskService->create($validated);
+        $task = $this->taskService->get($id);
 
         return response()->json($task);
     }
@@ -82,8 +84,8 @@ class TaskController extends Controller
     public function destroy(DeleteTaskRequest $request): JsonResponse
     {
         $validated = $request->validated();
-        $task = $this->taskService->delete($validated['id']);
+        $isDeleted = $this->taskService->delete($validated['id']);
 
-        return response()->json($task);
+        return response()->json($isDeleted);
     }
 }

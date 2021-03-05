@@ -13,7 +13,7 @@ class UpdateTaskRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -25,7 +25,7 @@ class UpdateTaskRequest extends FormRequest
     {
         return [
             'id' => 'required|integer|min:1',
-            'title' => 'required|capitalize|max:255',
+            'task' => 'required|max:255',
             'is_done' => 'required|boolean'
         ];
     }

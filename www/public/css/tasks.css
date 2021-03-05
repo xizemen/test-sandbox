@@ -1,0 +1,24 @@
+.task-name {
+    min-height: 150px;
+    max-height: 400px;
+}
+
+input.task-status {
+    width: 30px;
+    height: 30px;
+
+    vertical-align: middle;
+
+    cursor: pointer;
+}
+
+.parsley-errors-list {
+    margin-top: 10px;
+    padding-left: 0;
+
+    list-style: none;
+}
+
+.parsley-errors-list li {
+    color: #e30000;
+}

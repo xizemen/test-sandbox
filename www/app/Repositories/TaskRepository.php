@@ -4,6 +4,8 @@ namespace App\Repositories;
 
 use App\Models\Task;
 use Exception;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
 
 /**
@@ -27,41 +29,40 @@ class TaskRepository
     }
 
     /**
-     * @return array
+     * @return Collection
      */
-    public function getAll(): array
+    public function getAll(): Collection
     {
         return Task::query()
-            ->where('deleted_at')
-            ->orderBy('created_at', 'desc')
+            ->where('is_deleted', 0)
+            ->latest('created_at')
             ->get();
     }
 
     /**
      * @param int $id
-     * @return array
+     * @return Builder|Model|object|null
      */
-    public function get(int $id): array
+    public function get(int $id)
     {
         return Task::query()
             ->where('id', $id)
-            ->where('deleted_at')
-            ->limit(1)
-            ->get();
+            ->where('is_deleted', 0)
+            ->first();
     }
 
     /**
      * @param array $data
-     * @return bool
+     * @return int
      */
-    public function create(array $data): bool
+    public function create(array $data): int
     {
         $task = new Task;
 
         $task->task = $data['task'];
-        $task->is_done = $data['is_done'];
+        $task->save();
 
-        return $task->save();
+        return $task->id;
     }
 
     /**
@@ -71,7 +72,7 @@ class TaskRepository
      */
     public function update(int $id, array $data): bool
     {
-        $task = Task::query()->find($id);
+        $task = Task::query()->where('is_deleted', 0)->find($id);
 
         $task->task = $data['task'];
         $task->is_done = $data['is_done'];
@@ -86,7 +87,11 @@ class TaskRepository
     public function delete(int $id): bool
     {
         try {
-            return Task::query()->find($id)->delete();
+            $task = Task::query()->where('is_deleted', 0)->find($id);
+            $task->is_deleted = 1;
+
+            $task->save();
+            return true;
         } catch (Exception $e) {
         }
 
