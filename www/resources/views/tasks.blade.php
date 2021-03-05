@@ -13,40 +13,44 @@
     <body>
         <div style="height: 100vh;">
             <div class="content h-100 pt-5 px-5 pb-0">
-                <div class="jumbotron bg-light h-100 shadow-lg">
-                    <div class="d-flex justify-content-between align-items-center mb-2">
-                        <h1 class="display-4 mb-0">Task List</h1>
-                        <button class="btn btn-success btn-lg init-create-task">Create a new task</button>
+                <div class="jumbotron bg-light h-100 shadow-lg d-flex flex-column">
+                    <div>
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <h1 class="display-4 mb-0">Task List</h1>
+                            <button class="btn btn-success btn-lg init-create-task">Create a new task</button>
+                        </div>
+                        <p class="lead text-muted">Developed only for testing purposes.</p>
                     </div>
-                    <p class="lead text-muted">Developed only for testing purposes.</p>
-                    <table class="table mt-5" id="tasksTable">
-                        <thead>
-                        <tr>
-                            <th scope="col">Task ID</th>
-                            <th scope="col">Task</th>
-                            <th scope="col">Status</th>
-                            <th scope="col">Actions</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        @foreach ($tasks as $task)
-                            <tr data-id="{{$task->id}}">
-                                <th scope="row" class="task-id">{{$task->id}}</th>
-                                <td class="w-50"><span class="task-name">{{$task->task}}</span></td>
-                                <td>
+                    <div class="table-wrapper flex-grow-1 mt-5">
+                        <table class="table" id="tasksTable">
+                            <thead>
+                            <tr>
+                                <th scope="col">Task ID</th>
+                                <th scope="col">Task</th>
+                                <th scope="col">Status</th>
+                                <th scope="col">Actions</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @foreach ($tasks as $task)
+                                <tr data-id="{{$task->id}}">
+                                    <th scope="row" class="task-id">{{$task->id}}</th>
+                                    <td><span class="task-name">{{$task->task}}</span></td>
+                                    <td>
                                     <span class="badge badge-{{$task->is_done ? 'success' : 'secondary'}} task-status text-uppercase">
                                         {{$task->is_done ? 'Done' : 'In progress'}}
                                     </span>
-                                </td>
-                                <td>
-                                    <button type="button" class="btn btn-warning mr-3 init-update-task">Update</button>
-                                    <button type="button" class="btn btn-danger init-delete-task">Delete</button>
-                                </td>
-                            </tr>
-                        @endforeach
-                        @include('/elements/layouts/noTasksYetRowLayout')
-                        </tbody>
-                    </table>
+                                    </td>
+                                    <td>
+                                        <button type="button" class="btn btn-warning mr-3 init-update-task">Update</button>
+                                        <button type="button" class="btn btn-danger init-delete-task">Delete</button>
+                                    </td>
+                                </tr>
+                            @endforeach
+                            @include('/elements/layouts/noTasksYetRowLayout')
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>

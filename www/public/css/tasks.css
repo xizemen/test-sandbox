@@ -1,4 +1,4 @@
-.task-name {
+textarea.task-name {
     min-height: 150px;
     max-height: 400px;
 }
@@ -21,4 +21,17 @@ input.task-status {
 
 .parsley-errors-list li {
     color: #e30000;
+}
+
+.table-wrapper {
+    overflow: hidden;
+    text-overflow: clip;
+    overflow-y: auto;
+}
+
+#tasksTable tr td:nth-child(2) {
+    max-width: 500px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
