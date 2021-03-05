@@ -10,5 +10,17 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Task extends Model
 {
+    /**
+     * @var string[]
+     */
+    protected $fillable = [
+      'task', 'is_done'
+    ];
 
+    /**
+     * @var string[]
+     */
+    protected $hidden = [
+        'deleted_at'
+    ];
 }
