@@ -54,15 +54,12 @@ class TaskService
     }
 
     /**
-     * @param int $id
      * @param array $data
      * @return Builder|Model|Collection|object
      */
-    public function update(int $id, array $data)
+    public function update(array $data): bool
     {
-        $this->taskRepository->update($id, $data);
-
-        return $this->taskRepository->get($id);
+        return $this->taskRepository->update($data);
     }
 
     /**

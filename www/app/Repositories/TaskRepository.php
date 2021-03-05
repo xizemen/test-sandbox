@@ -66,13 +66,12 @@ class TaskRepository
     }
 
     /**
-     * @param int $id
      * @param array $data
      * @return bool
      */
-    public function update(int $id, array $data): bool
+    public function update(array $data): bool
     {
-        $task = Task::query()->where('is_deleted', 0)->find($id);
+        $task = Task::query()->where('is_deleted', 0)->find($data['id']);
 
         $task->task = $data['task'];
         $task->is_done = $data['is_done'];

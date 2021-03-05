@@ -10,10 +10,21 @@ use App\Services\TaskService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\View\View;
 
+/**
+ * Class TaskController
+ * @package App\Http\Controllers
+ */
 class TaskController extends Controller
 {
+    /**
+     * @var TaskService
+     */
     protected $taskService;
 
+    /**
+     * TaskController constructor.
+     * @param TaskService $taskService
+     */
     public function __construct(TaskService $taskService)
     {
         $this->taskService = $taskService;
@@ -69,8 +80,10 @@ class TaskController extends Controller
      */
     public function update(UpdateTaskRequest $request): JsonResponse
     {
-        $validated = $request->validated();
-        $task = $this->taskService->update($validated['id'], $validated);
+        $validatedData = $request->validated();
+
+        $this->taskService->update($validatedData);
+        $task = $this->taskService->get($validatedData['id']);
 
         return response()->json($task);
     }

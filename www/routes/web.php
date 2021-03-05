@@ -11,8 +11,6 @@
 |
 */
 
-use Illuminate\Support\Facades\Route;
-
 Route::get('/', 'TaskController@index');
 
 Route::get('/task', 'TaskController@index');
@@ -24,3 +22,5 @@ Route::post('/task', 'TaskController@create');
 Route::put('/task/{id}', 'TaskController@update');
 
 Route::delete('/task/{id}', 'TaskController@destroy');
+
+Route::fallback('ErrorController@error404');

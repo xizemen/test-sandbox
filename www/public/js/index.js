@@ -192,4 +192,4 @@ $(document).ready(() => {
     $.ajaxPrefilter((options, originalOptions) => {
         options.data = $.param({...originalOptions.data, _token: $('meta[name="csrf-token"]').prop('content')});
     });
-})
+});
