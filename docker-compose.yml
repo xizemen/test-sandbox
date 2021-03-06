@@ -8,7 +8,6 @@ services:
     restart: 'always'
     ports:
       - "80:80"
-      - "443:443"
     links:
       - mysql
     volumes:
@@ -26,8 +25,8 @@ services:
     volumes:
       - ${MYSQL_LOG_DIR-./logs/mysql}:/var/log/mysql
     environment:
-      MYSQL_ROOT_PASSWORD: tiger
-      MYSQL_DATABASE: png
-      MYSQL_USER: png
-      MYSQL_PASSWORD: png
+      MYSQL_ROOT_PASSWORD: superuser
+      MYSQL_DATABASE: tasks_db
+      MYSQL_USER: root
+      MYSQL_PASSWORD: superuser
 

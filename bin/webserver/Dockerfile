@@ -44,3 +44,6 @@ RUN docker-php-ext-install -j$(nproc) gd
 
 # Enable apache modules
 RUN a2enmod rewrite headers
+
+EXPOSE 80
+CMD php artisan serve --host=0.0.0.0 --port=80
