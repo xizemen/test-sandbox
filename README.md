@@ -68,6 +68,64 @@
 * The Task List page is rendered and ready for the work.
 
 --------
+## Listing of directories & files:
+
+* /bin/webserver/Dockerfile - expose port 80 & serve laravel project
+
+
+* /www - laravel project is inside
+  
+
+* /www/app/Exceptions/Handler.php - custom Exception handling logic
+  
+
+* /www/app/Exceptions/NonExistentTaskException.php
+  
+
+* /www/app/Http/Controllers/ErrorController.php
+* /www/app/Http/Controllers/TaskController.php
+* /www/app/Http/Middleware/XssFilter.php
+  
+
+* /www/app/Http/Requests/CreateTaskRequest.php
+* /www/app/Http/Requests/DeleteTaskRequest.php
+* /www/app/Http/Requests/GetTaskRequest.php
+* /www/app/Http/Requests/UpdateTaskRequest.php
+  
+
+* /www/app/Models/Task.php
+  
+
+* /www/app/Providers/FormRequestProvider.php
+
+
+* /www/app/Repositories/TaskRepository.php
+  
+
+* /www/app/Services/TaskService.php
+  
+
+* /www/database/factories/TaskFactory.php
+  
+
+* /www/database/migrations/<MIGRATION_DATE>_create_tasks_table.php
+  
+
+* /www/database/seeds/TaskSeeder.php
+  
+
+* /www/routes/web.php
+  
+
+* /www/tests/Feature/ErrorPageTest.php
+* /www/tests/Feature/TaskCreateTest.php
+* /www/tests/Feature/TaskDeleteTest.php
+* /www/tests/Feature/TaskIndexTest.php
+* /www/tests/Feature/TaskUpdateTest.php
+
+
+* /README.md
+--------
 
 ### Connect to MySQL
 
