@@ -40,9 +40,15 @@
 * If installation is complete, access webserver container ```docker exec -ti mend-webserver /bin/bash```
   
 
+* Clear laravel configs cache ```php artisan config:clear```
+
+
 * Generate laravel app. encryption key ```php artisan key:generate```
+
+
+* Cache laravel configs ```php artisan config:cache```
  
- 
+
 * Now, you can run laravel migrations to set up tasks DB table ```php artisan migrate```
   
 
