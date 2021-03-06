@@ -25,8 +25,8 @@ services:
     volumes:
       - ${MYSQL_LOG_DIR-./logs/mysql}:/var/log/mysql
     environment:
-      MYSQL_ROOT_PASSWORD: tiger
-      MYSQL_DATABASE: png
+      MYSQL_ROOT_PASSWORD: superuser
+      MYSQL_DATABASE: tasks_db
       MYSQL_USER: root
-      MYSQL_PASSWORD: tiger
+      MYSQL_PASSWORD: superuser
 
