@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Exceptions\NonExistentTaskException;
 use App\Repositories\TaskRepository;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
@@ -37,7 +38,8 @@ class TaskService
 
     /**
      * @param int $id
-     * @return Builder|Model|Collection|object
+     * @return Builder|Model|object|null
+     * @throws NonExistentTaskException
      */
     public function get(int $id)
     {
@@ -56,6 +58,7 @@ class TaskService
     /**
      * @param array $data
      * @return Builder|Model|Collection|object
+     * @throws NonExistentTaskException
      */
     public function update(array $data): bool
     {
@@ -65,6 +68,7 @@ class TaskService
     /**
      * @param int $id
      * @return bool
+     * @throws NonExistentTaskException
      */
     public function delete(int $id): bool
     {

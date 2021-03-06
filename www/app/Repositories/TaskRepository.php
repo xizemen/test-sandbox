@@ -2,8 +2,8 @@
 
 namespace App\Repositories;
 
+use App\Exceptions\NonExistentTaskException;
 use App\Models\Task;
-use Exception;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
@@ -40,18 +40,6 @@ class TaskRepository
     }
 
     /**
-     * @param int $id
-     * @return Builder|Model|object|null
-     */
-    public function get(int $id)
-    {
-        return Task::query()
-            ->where('id', $id)
-            ->where('is_deleted', 0)
-            ->first();
-    }
-
-    /**
      * @param array $data
      * @return int
      */
@@ -68,10 +56,11 @@ class TaskRepository
     /**
      * @param array $data
      * @return bool
+     * @throws NonExistentTaskException
      */
     public function update(array $data): bool
     {
-        $task = Task::query()->where('is_deleted', 0)->find($data['id']);
+        $task = $this->get($data['id']);
 
         $task->task = $data['task'];
         $task->is_done = $data['is_done'];
@@ -81,19 +70,32 @@ class TaskRepository
 
     /**
      * @param int $id
+     * @return Builder|Model|object|null
+     * @throws NonExistentTaskException
+     */
+    public function get(int $id)
+    {
+        $task = Task::query()
+            ->where('is_deleted', 0)
+            ->find($id);
+
+        if (is_null($task)) {
+            throw new NonExistentTaskException();
+        }
+
+        return $task;
+    }
+
+    /**
+     * @param int $id
      * @return bool
+     * @throws NonExistentTaskException
      */
     public function delete(int $id): bool
     {
-        try {
-            $task = Task::query()->where('is_deleted', 0)->find($id);
-            $task->is_deleted = 1;
+        $task = $this->get($id);
+        $task->is_deleted = 1;
 
-            $task->save();
-            return true;
-        } catch (Exception $e) {
-        }
-
-        return false;
+        return $task->save();
     }
 }

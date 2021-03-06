@@ -172,7 +172,10 @@ $(document).on('submit', '#taskUpdateForm', e => updateTask(e).then(task => {
 
 $(document).on('click', '.init-delete-task', initDeleteTask);
 $(document).on('click', '.delete-task', e => deleteTask(e).then(isDeleted => {
-    hideDeletedTask($('.delete-task').data('id')).then(renderNoTasksMessage);
+    if (isDeleted) {
+        hideDeletedTask($('.delete-task').data('id')).then(renderNoTasksMessage);
+    }
+
     $('#taskDeleteModal').modal('hide');
 }));
 
@@ -189,7 +192,8 @@ $(document).ready(() => {
         }
     });
 
-    $.ajaxPrefilter((options, originalOptions) => {
+    $.ajaxPrefilter((options, originalOptions, jqXHR) => {
+        console.log(jqXHR);
         options.data = $.param({...originalOptions.data, _token: $('meta[name="csrf-token"]').prop('content')});
     });
 });

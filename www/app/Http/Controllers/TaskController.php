@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exceptions\NonExistentTaskException;
 use App\Http\Requests\CreateTaskRequest;
 use App\Http\Requests\DeleteTaskRequest;
 use App\Http\Requests\GetTaskRequest;
@@ -47,6 +48,7 @@ class TaskController extends Controller
      *
      * @param GetTaskRequest $request
      * @return JsonResponse
+     * @throws NonExistentTaskException
      */
     public function get(GetTaskRequest $request): JsonResponse
     {
@@ -61,6 +63,7 @@ class TaskController extends Controller
      *
      * @param CreateTaskRequest $request
      * @return JsonResponse
+     * @throws NonExistentTaskException
      */
     public function create(CreateTaskRequest $request): JsonResponse
     {
@@ -77,6 +80,7 @@ class TaskController extends Controller
      *
      * @param UpdateTaskRequest $request
      * @return JsonResponse
+     * @throws NonExistentTaskException
      */
     public function update(UpdateTaskRequest $request): JsonResponse
     {
@@ -93,6 +97,7 @@ class TaskController extends Controller
      *
      * @param DeleteTaskRequest $request
      * @return JsonResponse
+     * @throws NonExistentTaskException
      */
     public function destroy(DeleteTaskRequest $request): JsonResponse
     {
