@@ -54,7 +54,9 @@
 
 * Ensure laravel feature tests are OK: 
   * Go to webserver container ```docker exec -ti mend-webserver /bin/bash```
+  * Clear laravel configs cache ```php artisan config:clear```
   * Run tests inside the container ```./vendor/bin/phpunit```
+  * Cache laravel configs ```php artisan config:cache```
     
 
 * [OPTIONAL] You may seed DB tasks table ```php artisan db:seed```
