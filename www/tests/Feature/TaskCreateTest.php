@@ -40,6 +40,17 @@ class TaskCreateTest extends TestCase
         ])->assertStatus(Response::HTTP_UNPROCESSABLE_ENTITY);
     }
 
+    public function testXssStrippedTaskIsCreated()
+    {
+        $response = $this->json('POST', '/task', [
+            'task' => '<script>const data = "Test task"; console.log(data);</script>'
+        ]);
+
+        $response
+            ->assertJson(['task' => 'const data = "Test task"; console.log(data);', 'is_done' => 0])
+            ->assertStatus(Response::HTTP_OK);
+    }
+
     public function testValidTaskIsCreated()
     {
         $response = $this->json('POST', '/task', [
