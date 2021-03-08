@@ -85,6 +85,21 @@ class TaskUpdateTest extends TestCase
         ])->assertStatus(Response::HTTP_UNPROCESSABLE_ENTITY);
     }
 
+    public function testXssStrippedTaskIsUpdated()
+    {
+        $response = $this->json('POST', '/task', ['task' => 'Test task']);
+
+        $response = $this->json('PUT', '/task/' . $response->json()['id'], [
+            'task' => '<script>const data = "This is a different task name!"; console.log(data);</script>',
+            'is_done' => 1
+        ]);
+
+        $response->assertJson([
+            'task' => 'const data = "This is a different task name!"; console.log(data);',
+            'is_done' => 1
+        ])->assertStatus(Response::HTTP_OK);
+    }
+
     public function testValidTaskIsUpdated()
     {
         $response = $this->json('POST', '/task', ['task' => 'Test task']);
